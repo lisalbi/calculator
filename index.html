@@ -40,12 +40,16 @@
 <script>
     let operandA = '';
     let operandB = '';
+    let operator = '';
+    let startNewNumber = false;
     const screen = document.querySelector('#screen');
     const clearBtn = document.querySelector('#clear');
     const backspaceBtn = document.querySelector('#backspace');
     const numberBtns = document.querySelectorAll(".number");
     numberBtns.forEach((btn) =>
-        btn.addEventListener('click', () => updateScreen(btn.textContent))
+        btn.addEventListener('click', function() {
+            updateScreen(btn.textContent);
+        })
     );
     clearBtn.addEventListener('click', function() {
         if (screen.textContent === '0') {
@@ -55,9 +59,27 @@
             clear();
         }
     });
+    const operatorBtns = document.querySelectorAll(".operator");
+    operatorBtns.forEach((btn) => 
+        btn.addEventListener('click', function() {
+            updateOperands();
+            operatorPressed(btn.textContent);
+        })
+    );
     backspaceBtn.addEventListener('click', function() {
         screen.textContent = screen.textContent.slice(0, -1);
     });
+    const equalsBtn = document.querySelector('#equals');
+    equalsBtn.addEventListener('click', function() {
+        updateOperands();
+        result = operate(operator, operandA, operandB);
+        operandA = '';
+        operandB = result;
+        operator = '';
+        screen.textContent = result;
+        startNewNumber = true;
+        console.log('startNewNumber = true');
+    })
 
 
     function add(a, b) {
@@ -72,31 +94,59 @@
     function divide(a, b) {
         return a/b;
     }
-    function operate(operator, a, b){
+    function operate(operator, x, y) {
         switch(operator) {
             case '+':
-                result = add(a, b);
+                result = add(x, y);
                 break;
             case '-':
-                result = subtract(a, b);
+                result = subtract(x, y);
                 break;
-            case '*':
-                result = multiply(a, b);
+            case 'x':
+                result = multiply(x, y);
                 break;
-            case '/':
-                result = divide(a, b);
+            case '÷':
+                result = divide(x, y);
                 break;
         }
         return result;
     }
 
+    function operatorPressed(newOperator) {
+        startNewNumber = true;
+        console.log('startNewNumber = true');
+        if (operandA && operandB) {
+            operandB = operate(operator, operandA, operandB);
+            updateScreen(operandB);
+            operator = newOperator;
+            console.log('operator pressed 1');
+        }
+        else if (!operandA && operandB) {
+            operator = newOperator;
+            console.log('operator pressed 2');
+        }
+    }
+
     function updateScreen(x) {
-        if (screen.textContent === "0") {
+
+        if (screen.textContent === "0" || startNewNumber === true) {
             screen.textContent = x;
             clearBtn.textContent = 'C';
+            console.log('startNewNumber = false');
         }
         else {
+            console.log('append');
             screen.textContent += x;
+        }
+    }
+
+    function updateOperands() {
+        if (!operandB) {
+            operandB = parseInt(screen.textContent);
+        }
+        else {
+            operandA = operandB;
+            operandB = parseInt(screen.textContent);
         }
     }
 
@@ -107,8 +157,10 @@
 
     function allClear() {
         screen.textContent = '0';
+        operandA = '';
+        operandB = '';
     }
 </script>
 
 <!-- Notes
--AC changes to C -->
+-AC changes to C, make an operator pressed class -->

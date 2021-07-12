@@ -11,7 +11,7 @@ input, button, select, textarea, optgroup, option {
 }
 
 #calculatorContainer {
-    background-color: #23c1aa;
+    background-color: #1a9986;
     width: 350px;
     margin: auto;
     text-align: center;
@@ -29,12 +29,14 @@ input, button, select, textarea, optgroup, option {
 }
 #screen {
     height: 80px;
-    padding-left: 12%;
-    padding-right: 12%;
+    padding-left: 10%;
+    padding-right: 10%;
     display: -webkit-flex;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    color: white;
+    font-size: 30px;
 }
 
 .btn {
@@ -42,7 +44,6 @@ input, button, select, textarea, optgroup, option {
     display: -webkit-flex;
     display: flex;
     align-items: center;
-    background-color: c5fff7;
     justify-content: center;
 }
 
