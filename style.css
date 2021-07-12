@@ -50,3 +50,9 @@ input, button, select, textarea, optgroup, option {
 #equals {
     grid-column: span 2;
 }
+
+.active {
+    color: white;
+    background-color: #c9355b;
+
+}

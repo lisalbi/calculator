@@ -41,6 +41,7 @@
     let operandA = '';
     let operandB = '';
     let operator = '';
+    let operatorBtn = '';
     let startNewNumber = false;
     const screen = document.querySelector('#screen');
     const clearBtn = document.querySelector('#clear');
@@ -48,10 +49,16 @@
     const numberBtns = document.querySelectorAll(".number");
     numberBtns.forEach((btn) =>
         btn.addEventListener('click', function() {
+            if (operatorBtn) {
+                operatorBtn.classList.remove('active');
+            }
             updateScreen(btn.textContent);
         })
     );
     clearBtn.addEventListener('click', function() {
+        if (operatorBtn) {
+                operatorBtn.classList.remove('active');
+            }
         if (screen.textContent === '0') {
             allClear();
         }
@@ -62,15 +69,26 @@
     const operatorBtns = document.querySelectorAll(".operator");
     operatorBtns.forEach((btn) => 
         btn.addEventListener('click', function() {
+            if (operatorBtn) {
+                operatorBtn.classList.remove('active');
+            }
             updateOperands();
             operatorPressed(btn.textContent);
+            operatorBtn = this;
+            this.classList.add('active');
         })
     );
     backspaceBtn.addEventListener('click', function() {
+        if (operatorBtn) {
+                operatorBtn.classList.remove('active');
+            }
         screen.textContent = screen.textContent.slice(0, -1);
     });
     const equalsBtn = document.querySelector('#equals');
     equalsBtn.addEventListener('click', function() {
+        if (operatorBtn) {
+                operatorBtn.classList.remove('active');
+            }
         updateOperands();
         result = operate(operator, operandA, operandB);
         operandA = '';
@@ -115,11 +133,15 @@
     function operatorPressed(newOperator) {
         startNewNumber = true;
         console.log('startNewNumber = true');
-        if (operandA && operandB) {
+        if (operandA && operandB && operator) {
             operandB = operate(operator, operandA, operandB);
             updateScreen(operandB);
             operator = newOperator;
             console.log('operator pressed 1');
+        }
+        else if (operandA && operandB && !operator) {
+            operandAP = '';
+            operator = newOperator;
         }
         else if (!operandA && operandB) {
             operator = newOperator;
@@ -128,7 +150,6 @@
     }
 
     function updateScreen(x) {
-
         if (screen.textContent === "0" || startNewNumber === true) {
             screen.textContent = x;
             clearBtn.textContent = 'C';
