@@ -153,7 +153,8 @@
         if (screen.textContent === "0" || startNewNumber === true) {
             screen.textContent = x;
             clearBtn.textContent = 'C';
-            console.log('startNewNumber = false');
+            startNewNumber = false;
+
         }
         else {
             console.log('append');
@@ -163,17 +164,18 @@
 
     function updateOperands() {
         if (!operandB) {
-            operandB = parseInt(screen.textContent);
+            operandB = parseFloat(screen.textContent);
         }
         else {
             operandA = operandB;
-            operandB = parseInt(screen.textContent);
+            operandB = parseFloat(screen.textContent);
         }
     }
 
     function clear() {
         screen.textContent = '0';
         clearBtn.textContent = 'AC'
+        startNewNumber = false;
     }
 
     function allClear() {
