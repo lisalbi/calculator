@@ -99,6 +99,12 @@
         console.log('startNewNumber = true');
     })
 
+    const signBtn = document.querySelector('#sign');
+    signBtn.addEventListener('click', function() {
+        changeSign();
+    });
+
+
 
     function add(a, b) {
         return a + b;
@@ -182,6 +188,18 @@
         screen.textContent = '0';
         operandA = '';
         operandB = '';
+    }
+
+    function changeSign() {
+        if (screen.textContent !== '0') {
+            if (screen.textContent[0] === '-') {
+                screen.textContent = screen.textContent.substring(1);
+            }
+            else {
+                screen.textContent = '-' + screen.textContent;
+            }
+        }
+
     }
 </script>
 
