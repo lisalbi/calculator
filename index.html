@@ -82,7 +82,10 @@
         if (operatorBtn) {
                 operatorBtn.classList.remove('active');
             }
-        screen.textContent = screen.textContent.slice(0, -1);
+        if (screen.textContent) {
+            screen.textContent = screen.textContent.slice(0, -1);
+        }
+        
     });
     const equalsBtn = document.querySelector('#equals');
     equalsBtn.addEventListener('click', function() {
@@ -200,6 +203,12 @@
             }
         }
 
+    }
+
+    function backspace() {
+        if (screen.textContent) {
+            screen.textContent = screen.textContent.slice(0, -1);
+        }
     }
 </script>
 
