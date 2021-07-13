@@ -56,3 +56,7 @@ input, button, select, textarea, optgroup, option {
     background-color: #c9355b;
 
 }
+
+.btn:hover {
+    background-color: white;
+}
