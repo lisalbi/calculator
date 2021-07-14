@@ -9,7 +9,6 @@
 <body class="light-theme || dark-theme">
     <header>
         <h1>JS Calculator</h1>
-        <button id="toggleMode">Toggle Dark Mode</button>
     </header>
     <div id="calculatorContainer">
         <div id="screen">0</div>
@@ -35,10 +34,20 @@
             <button class="btn" id="equals">=</button>
         </div>
     </div>
+    <div id="toggleContainer">
+        <label for = 'modeToggle'>Dark Mode</label>
+        <label class="switch">
+            
+            <input type="checkbox" id='modeToggle'>
+            <span class="slider round"></span>
+          </label>
+    </div>
+    
     
     
 </body>
 <script>
+    document.body.classList.toggle('light-mode');  
     let operandA = '';
     let operandB = '';
     let operator = '';
@@ -108,10 +117,11 @@
         changeSign();
     });
 
-    const toggleMode = document.querySelector('#toggleMode');
-    toggleMode.addEventListener('click', function() {
+    const modeToggle = document.querySelector('#modeToggle');
+    modeToggle.addEventListener('change', function() {
         document.body.classList.toggle('light-mode');  
-    })
+    });
+
 
 
 
