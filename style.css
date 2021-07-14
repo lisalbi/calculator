@@ -29,6 +29,7 @@ input, button, select, textarea, optgroup, option {
     padding: 10px;
     border-radius: 5%;
     padding: 20px;
+    box-shadow:0 1px 2px rgba(0,0,0,0.07),0 2px 4px rgba(0,0,0,0.07),0 4px 8px rgba(0,0,0,0.07),0 8px 16px rgba(0,0,0,0.07),0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07)
 }
 
 #btnContainer {
@@ -135,7 +136,7 @@ body.light-mode #screen {
     color: rgb(31, 31, 31);
 }
 
-body.light-mode #clear, #backspace, #sign {
+body.light-mode #clear,  body.light-mode #backspace, body.light-mode #sign {
     background-color: #cecece;
 }
 

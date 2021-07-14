@@ -39,7 +39,6 @@
     
 </body>
 <script>
-    document.body.classList.toggle('light-mode');  
     let operandA = '';
     let operandB = '';
     let operator = '';
@@ -172,8 +171,7 @@
             startNewNumber = false;
 
         }
-        else {
-            console.log('append');
+        else if (screen.textContent.length < 13) {
             screen.textContent += x;
         }
     }
@@ -217,6 +215,17 @@
             screen.textContent = screen.textContent.slice(0, -1);
         }
     }
+
+    function roundToFit(x) {
+        if (x.toString.length < 13) {
+            return x;
+        }
+        else {
+            decimalLength = 12 - Math.round(x);
+            return x.toFixed(decimalLength);
+        }
+    }
+
 </script>
 
 <!-- Notes
