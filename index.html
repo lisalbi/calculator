@@ -6,9 +6,10 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://use.typekit.net/tfw3wfo.css">
 </head>
-<body>
+<body class="light-theme || dark-theme">
     <header>
         <h1>JS Calculator</h1>
+        <button id="toggleMode">Toggle Dark Mode</button>
     </header>
     <div id="calculatorContainer">
         <div id="screen">0</div>
@@ -32,12 +33,13 @@
             <button class="btn number" id="zero">0</button>
             <button class="btn number" id="decimal">.</button>
             <button class="btn" id="equals">=</button>
-
         </div>
-
     </div>
+    
+    
 </body>
 <script>
+    document.body.classList.toggle('light-mode');  
     let operandA = '';
     let operandB = '';
     let operator = '';
@@ -106,6 +108,11 @@
     signBtn.addEventListener('click', function() {
         changeSign();
     });
+
+    const toggleMode = document.querySelector('#toggleMode');
+    toggleMode.addEventListener('click', function() {
+        document.body.classList.toggle('light-mode');  
+    })
 
 
 

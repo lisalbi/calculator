@@ -3,6 +3,15 @@ html, body, form, fieldset, table, tr, td, img {
     font-size: 25px;
 }
 
+body {
+    background-color: #567770;
+}
+
+header {
+    text-align: center;
+    color: white;
+}
+
 input, button, select, textarea, optgroup, option {
     font-family: inherit;
     font-size: inherit;
@@ -85,9 +94,56 @@ input, button, select, textarea, optgroup, option {
 }
 
 #equals {
-    background-color: #ba3858;
+    background-color: #d8134b;
 }
 
 .btn:hover {
     filter: brightness(115%);
+}
+
+#toggleMode {
+    margin: 15px;
+    border: transparent;
+}
+
+
+
+/* Light Mode styles */
+body.light-mode {
+    background-color: #e5f7f4;
+}
+
+
+body.light-mode header {
+    color: rgb(31, 31, 31);
+}
+
+body.light-mode #calculatorContainer {
+    background-color: white;
+}
+
+body.light-mode .btn {
+    background-color: #f5f5f5;
+    color: rgb(31, 31, 31);
+}
+
+body.light-mode .operator {
+    background-color: #d6f0eb;
+}
+
+body.light-mode #screen {
+    color: rgb(31, 31, 31);
+}
+
+body.light-mode #clear, #backspace, #sign {
+    background-color: #cecece;
+}
+
+body.light-mode .btn:hover {
+    filter: brightness(95%);
+}
+
+body.light-mode .active {
+    color: white;
+    background-color: #0db594;
 }
