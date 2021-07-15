@@ -1,7 +1,7 @@
 # Calculator
 This project is an online calculator. It was completed using HTML, CSS, and vanilla Javascript. It is keyboard compatible.
 
-#Features
+# Features
 * Basic mathematic operations such as adding, subtracting, dividing, and multiplying are supported.
 * Negative numbers and decimals are supported.
 * Keyboard inputs are supported for all calculator buttons.
