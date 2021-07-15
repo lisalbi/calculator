@@ -102,14 +102,10 @@ input, button, select, textarea, optgroup, option {
     filter: brightness(115%);
 }
 
-#toggleMode {
-    margin: 15px;
-    border: transparent;
-}
 
 #toggleContainer {
     text-align: center;
-    margin: 20px;
+    margin: 30px;
     color: white;
 }
 
