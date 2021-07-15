@@ -1,5 +1,5 @@
 # Calculator
-:star2: [Click here for a Live Demo](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/calculator) :star2:
+:star2: [Click here for a Live Demo](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/calculator) :star2: <br>
 This project is an online calculator. It was completed using HTML, CSS, and vanilla Javascript. It is keyboard compatible.
 
 ## Features
