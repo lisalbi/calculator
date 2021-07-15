@@ -9,6 +9,7 @@
 <body class="light-theme || dark-theme">
     <header>
         <h1>JS Calculator</h1>
+        <p>&#11088; This calculator is keyboard compatible!</p>
     </header>
     <div id="calculatorContainer">
         <div id="screen">0</div>
@@ -24,13 +25,13 @@
             <button class="btn number" id="four">4</button>
             <button class="btn number" id="five">5</button>
             <button class="btn number" id="six">6</button>
-            <button class="btn operator" id="subtraction">-</button>
+            <button class="btn operator" id="subtract">-</button>
             <button class="btn number" id="one">1</button>
             <button class="btn number" id="two">2</button>
             <button class="btn number" id="three">3</button>
             <button class="btn operator" id="add">+</button>
             <button class="btn number" id="zero">0</button>
-            <button class="btn number" id="decimal">.</button>
+            <button class="btn" id="decimal">.</button>
             <button class="btn" id="equals">=</button>
         </div>
     </div>
@@ -61,12 +62,14 @@
     const operatorBtns = document.querySelectorAll(".operator");
     const equalsBtn = document.querySelector('#equals');
     const signBtn = document.querySelector('#sign');
+    const decimalBtn = document.querySelector('#decimal');
     const toggleModeBtn = document.querySelector('#modeToggle');
 
     clearBtn.addEventListener('click', clear);
     backspaceBtn.addEventListener('click', backspace);
     signBtn.addEventListener('click', changeSign);
     equalsBtn.addEventListener('click', evaluate);
+    decimalBtn.addEventListener('click', appendDecimal);
     toggleModeBtn.addEventListener('change', toggleMode);
     numberBtns.forEach((btn) =>
         btn.addEventListener('click', () => updateScreen(btn.textContent))
@@ -167,7 +170,8 @@
         }
     }
 
-    // Clears the screen and sets it to 0. If the screen is already 0, 
+    // Clears the screen and sets it to 0. If the screen number is already 0,
+    // clears all data, including operand and operator variables. 
     function clear() {
         if (operatorBtn) {
             operatorBtn.classList.remove('active');
@@ -185,6 +189,7 @@
         
     }
 
+    // Add or remove negative sign from the screen number.
     function changeSign() {
         if (startNewNumber) {
             screen.textContent = '0';
@@ -198,15 +203,23 @@
 
     }
 
+    // Removes the last number from the display number.
     function backspace() {
         if (startNewNumber) {
             screen.textContent = '0';
         }
         else if (screen.textContent) {
-            screen.textContent = screen.textContent.slice(0, -1);
+            if (screen.textContent.length === 1) {
+                screen.textContent = '0';
+            }
+            else {
+                screen.textContent = screen.textContent.slice(0, -1);
+            }
+            
         }
     }
 
+    // Rounds numbers to fit the screen.
     function roundToFit(x) {
         if (x.toString.length < 13) {
             return x;
@@ -217,6 +230,8 @@
         }
     }
 
+    // Trigged when equals button is clicked, evaluates the 
+    // current expression based on current operator and operands.
     function evaluate() {
         if (operatorBtn) {
                 operatorBtn.classList.remove('active');
@@ -232,23 +247,45 @@
         }
     }
 
+    // Toggles between light and dark mode.
     function toggleMode() {
         document.body.classList.toggle('light-mode');  
     }
 
+    function appendDecimal() {
+        if (!screen.textContent.includes('.')) {
+            updateScreen('.');
+        }
+    }
     document.addEventListener('keydown', convertKey);
     function convertKey(event) {
-        if ((event.key >= 0 && event.key <= 9) || event.key === '.') {
+        if ((event.key >= 0 && event.key <= 9)) {
             updateScreen(event.key);
         }
+        else if (event.key === '.') {
+            appendDecimal();
+        }
+        else if (event.key === '-' && screen.textContent === '0') {
+            changeSign();
+        }
         else if (event.key === 'x' || event.key === '*') {
-            if (operatorBtn) {
-                operatorBtn.classList.remove('active');
-            }
-            updateOperands();
-            operatorPressed('x');
-            operatorBtn = document.querySelector('#multiply');
-            operatorBtn.classList.add('active');
+            setOperator(event.key, document.querySelector('#multiply'));
+        }
+        else if (event.key === '/') {
+            setOperator(event.key, document.querySelector('#divide'));
+        }
+        else if (event.key === '+') {
+            setOperator(event.key, document.querySelector('#add'));
+        }
+        else if (event.key === '-') {
+            setOperator(event.key, document.querySelector('#subtract'));
+        }
+        else if (event.key === '=' || event.key === "Enter") {
+            evaluate();
+        }
+        else if (event.key === "Backspace" || event.key === "Delete") {
+            console.log('delete');
+            backspace();
         }
     }
 
