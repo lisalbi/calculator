@@ -1,5 +1,5 @@
 # Calculator
-:star2: [Click here for a Live Demo](https://lisalbi.github.io/calculator/) :star2: <br>
+:star2: [Click here for a Live Demo](https://lisalbi.github.io/calculator/) :star2: <br><br>
 This project is an online calculator. It was completed using HTML, CSS, and vanilla Javascript. It is keyboard compatible.
 
 ## Features
