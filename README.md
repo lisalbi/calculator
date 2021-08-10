@@ -9,6 +9,7 @@ This project is an online calculator. It was completed using HTML, CSS, and vani
 * Backspace button allows user to delete a single character.
 * C/AC button allows for user to clear the screen, and delete the stored operands and operators if pressed twice.
 
-## Acknowledgments
-This project is based on a prompt from [The Odin Project](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/calculator).
+<br/><br/>
+![Screenshot](/img/screenshot.png "screenshot")
+
 
